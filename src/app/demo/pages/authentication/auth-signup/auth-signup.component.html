@@ -1,0 +1,65 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-wrapper">
+  <div class="auth-wrapper">
+    <div class="auth-content">
+      <div class="auth-bg">
+        <span class="r"></span>
+        <span class="r s"></span>
+        <span class="r s"></span>
+        <span class="r"></span>
+      </div>
+      <div class="card">
+        <div class="card-body text-center">
+          <div class="mb-4">
+            <i class="feather icon-user-plus auth-icon"></i>
+          </div>
+          <h3 class="mb-4">Sign up</h3>
+
+          <!-- First Name -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" />
+
+          </div>
+          <span *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched" class="error-message">First name is required.</span>
+
+          <!-- Last Name -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+          </div>
+          <span *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched" class="error-message">Last name is required.</span>
+
+
+          <!-- Email -->
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+           
+          </div>
+          <span *ngIf="signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched" class="error-message">Email is required.</span>
+          <span *ngIf="signUpForm.get('email')?.hasError('email') && signUpForm.get('email')?.touched" class="error-message">Invalid email format.</span>
+
+          <!-- Phone -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Phone" formControlName="phone" />
+          </div>
+          <span *ngIf="signUpForm.get('phone')?.hasError('required') && signUpForm.get('phone')?.touched" class="error-message">Phone number is required.</span>
+          <span *ngIf="signUpForm.get('phone')?.hasError('minlength') && signUpForm.get('phone')?.touched" class="error-message">Phone number must be at least 6 characters long.</span>
+
+          <!-- Password -->
+          <div class="input-group mb-4">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+          </div>
+          <span *ngIf="signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched" class="error-message">Password is required.</span>
+          <span *ngIf="signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.touched" class="error-message">Password must be at least 6 characters long.</span>
+
+          <!-- Submit Button -->
+          <button class="btn btn-primary shadow-2 mb-4" type="submit">Sign up</button>
+
+          <!-- Login Link -->
+          <p class="mb-0 text-muted">
+            Already have an account?
+            <a [routerLink]="['/auth/signin']">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

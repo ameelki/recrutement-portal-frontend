@@ -1,0 +1,146 @@
+<div class="row">
+    <!-- Card for Domain Selection -->
+    <div class="col-sm-12 col-md-6">
+        <app-card cardTitle="Choose a Domain" [options]="false">
+          <form [formGroup]="domainForm" (ngSubmit)="onDomainSubmit()">
+            <div class="form-group">
+              <label for="sector">Select a Domain</label>
+              <select class="form-control" id="sector" formControlName="sector" (change)="onDomainChange($event)">
+                <option value="">Select a Domain</option>
+                <option *ngFor="let domain of domains" [value]="domain">{{ domain }}</option>
+              </select>
+            </div>
+    
+            <!-- Show the subdomain dropdown if a domain is selected -->
+            <div *ngIf="selectedDomain">
+              <label for="subdomain">Select a Subdomain</label>
+              <select class="form-control" id="subdomain" formControlName="subdomain">
+                <option value="">Select a Subdomain</option>
+                <option *ngFor="let subdomain of subdomains[selectedDomain]" [value]="subdomain">{{ subdomain }}</option>
+              </select>
+            </div>
+    
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="domainForm.invalid">Next</button>
+            </div>
+          </form>
+        </app-card>
+      </div>
+  
+    <!-- Card for Job Description Form -->
+    <div class="col-sm-12 col-md-6" *ngIf="domainSelected">
+      <app-card cardTitle="Create Job Description" [options]="false">
+        <h5>Job Information</h5>
+        <hr />
+        <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Company Name -->
+              <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" id="companyName" formControlName="companyName" placeholder="Enter company name" />
+              </div>
+  
+              <!-- Position Title -->
+              <div class="form-group">
+                <label for="positionTitle">Position Title</label>
+                <input type="text" class="form-control" id="positionTitle" formControlName="positionTitle" placeholder="Enter position title" />
+              </div>
+  
+              <!-- Number of Positions -->
+              <div class="form-group">
+                <label for="numRequiredForPosition">Number of Positions</label>
+                <input type="number" class="form-control" id="numRequiredForPosition" formControlName="numRequiredForPosition" placeholder="Enter number of positions" />
+              </div>
+  
+              <!-- Job Description -->
+              <div class="form-group">
+                <label for="jobDescription">Job Description</label>
+                <textarea class="form-control" id="jobDescription" formControlName="jobDescription" rows="4" placeholder="Enter job description"></textarea>
+              </div>
+  
+              <!-- Basic Salary -->
+              <div class="form-group">
+                <label for="basicSalary">Basic Salary</label>
+                <input type="number" class="form-control" id="basicSalary" formControlName="basicSalary" placeholder="Enter basic salary" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <!-- Food Allowance -->
+              <div class="form-group">
+                <label for="foodAllowance">Food Allowance</label>
+                <input type="number" class="form-control" id="foodAllowance" formControlName="foodAllowance" placeholder="Enter food allowance" />
+              </div>
+  
+              <!-- Other Allowance -->
+              <div class="form-group">
+                <label for="otherAllowance">Other Allowance</label>
+                <input type="number" class="form-control" id="otherAllowance" formControlName="otherAllowance" placeholder="Enter other allowance" />
+              </div>
+  
+              <!-- Leave Policy -->
+              <div class="form-group">
+                <label for="leavePolicy">Leave Policy</label>
+                <input type="text" class="form-control" id="leavePolicy" formControlName="leavePolicy" placeholder="Enter leave policy" />
+              </div>
+  
+              <!-- Air Ticket Allowance -->
+              <div class="form-group">
+                <label for="airTicketAllowance">Air Ticket Allowance</label>
+                <input type="text" class="form-control" id="airTicketAllowance" formControlName="airTicketAllowance" placeholder="Enter air ticket allowance" />
+              </div>
+  
+              <!-- Accommodation -->
+              <div class="form-group">
+                <label for="accommodation">Accommodation</label>
+                <input type="text" class="form-control" id="accommodation" formControlName="accommodation" placeholder="Enter accommodation" />
+              </div>
+  
+              <!-- Working Hours -->
+              <div class="form-group">
+                <label for="workingHours">Working Hours</label>
+                <input type="text" class="form-control" id="workingHours" formControlName="workingHours" placeholder="Enter working hours" />
+              </div>
+  
+              <!-- Medical Benefits -->
+              <div class="form-group">
+                <label for="medicalBenefits">Medical Benefits</label>
+                <input type="text" class="form-control" id="medicalBenefits" formControlName="medicalBenefits" placeholder="Enter medical benefits" />
+              </div>
+  
+              <!-- Contact Email -->
+              <div class="form-group">
+                <label for="contactEmail">Contact Email</label>
+                <input type="email" class="form-control" id="contactEmail" formControlName="contactEmail" placeholder="Enter contact email" />
+              </div>
+  
+              <!-- Contact Phone -->
+              <div class="form-group">
+                <label for="contactPhone">Contact Phone</label>
+                <input type="text" class="form-control" id="contactPhone" formControlName="contactPhone" placeholder="Enter contact phone" />
+              </div>
+  
+              <!-- Contact Mobile -->
+              <div class="form-group">
+                <label for="contactMobile">Contact Mobile</label>
+                <input type="text" class="form-control" id="contactMobile" formControlName="contactMobile" placeholder="Enter contact mobile" />
+              </div>
+  
+              <!-- Publication Date -->
+              <div class="form-group">
+                <label for="publicationDate">Publication Date</label>
+                <input type="date" class="form-control" id="publicationDate" formControlName="publicationDate" />
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="jobForm.invalid">Submit</button>
+          </div>
+        </form>
+      </app-card>
+    </div>
+  </div>
+  

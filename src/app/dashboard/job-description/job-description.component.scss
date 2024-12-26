@@ -1,0 +1,25 @@
+/* Style général pour les champs du formulaire */
+form {
+    padding: 20px;
+    background-color: #f1f3f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input.form-control, textarea.form-control, select.form-control {
+    border-radius: 5px;
+    box-shadow: none;
+  }
+  
+  button[type="submit"] {
+    align-self: center; /* This will center the button horizontally */
+    width: auto; /* Adjusts button width if needed */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  

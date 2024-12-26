@@ -27,7 +27,7 @@ export default class AuthSigninComponent {
       username: this.email,
       password: this.password
     };
-  
+
     // Affichage de l'animation de chargement pendant l'authentification
     Swal.fire({
       title: 'Authenticating...',
@@ -39,19 +39,19 @@ export default class AuthSigninComponent {
         Swal.showLoading(); // Afficher l'animation de chargement
       }
     });
-  
+
     // Effectuer la requête d'authentification
     this.authService.login(loginFormRequest).subscribe({
       next: (response) => {
         // Stocker le token d'accès dans le localStorage
         localStorage.setItem('accessToken', response.accessToken);
-        
+
         // Décoder le JWT pour obtenir les rôles de l'utilisateur
         const { roles } = this.decodeToken(response.accessToken);
-  
+
         // Naviguer en fonction des rôles
         this.navigateBasedOnRole(roles);
-  
+
         // Afficher un message de succès après une authentification réussie
         Swal.fire({
           title: 'Authentication Successful!',
@@ -62,7 +62,7 @@ export default class AuthSigninComponent {
       },
       error: (err) => {
         // Masquer le chargement
-  
+
         // Afficher une alerte d'erreur si l'authentification échoue
         Swal.fire({
           icon: 'error',
@@ -88,7 +88,7 @@ export default class AuthSigninComponent {
 
   private navigateBasedOnRole(roles: string[]): void {
     if (roles.includes('client')) {
-      this.router.navigate(['create-job']);  // Redirection vers 'lang/create-job'
+      this.router.navigate(['/dashboard/job/create']);  // Redirection vers 'lang/create-job'
     } else if (roles.includes('candidate')) {
       this.router.navigate(['list-job-for-candidate']);
     } else {

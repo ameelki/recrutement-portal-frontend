@@ -848,9 +848,9 @@
       width: $Menu-collapsed-width;
 
       img {
-        transform: rotateY(-90deg);
+        transform: rotateY(0deg);
         transform-origin: 0 0;
-        opacity: 0;
+        opacity: 1;
         transition: unset;
       }
 

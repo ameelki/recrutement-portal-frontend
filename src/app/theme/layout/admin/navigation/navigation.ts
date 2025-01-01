@@ -52,7 +52,7 @@ export class NavigationItem {
         icon: 'icon-group',
         children: [
           {
-            hidden: !roles.includes('client'),
+            hidden: !(roles.includes('client') || roles.includes('premium')),
             id: 'forms-element',
             title: 'create job position',
             type: 'item',
@@ -61,8 +61,7 @@ export class NavigationItem {
             icon: 'feather icon-file-text'
           },
           {
-            hidden: !roles.includes('candidate'),
-
+            hidden: !(roles.includes('candidate') || roles.includes('premium')),
             id: 'tables',
             title: 'jobs',
             type: 'item',

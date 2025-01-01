@@ -76,8 +76,7 @@ export class NavigationItem {
 
 }
   get() {
-  const roles = JSON.parse(localStorage.getItem("roles"));
-
-    return this.getNavigation(roles);
+  const roles = JSON.parse(localStorage.getItem("roles") != undefined ? localStorage.getItem("roles") : "[]");
+  return this.getNavigation(roles);
   }
 }

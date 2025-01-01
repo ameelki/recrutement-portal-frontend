@@ -87,6 +87,7 @@ export default class AuthSigninComponent {
   }
 
   private navigateBasedOnRole(roles: string[]): void {
+    localStorage.setItem("roles", JSON.stringify(roles));
     if (roles.includes('client')) {
       this.router.navigate(['/dashboard/job/create']);  // Redirection vers 'lang/create-job'
     } else if (roles.includes('candidate')) {

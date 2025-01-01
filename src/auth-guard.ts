@@ -50,6 +50,11 @@ export class AuthGuard  implements CanActivate{
   }
 
 
+  isRoleAvailable(role:string,route: ActivatedRouteSnapshot): boolean {
+    const requiredRoles = route.data['roles'];
+    return requiredRoles.includes(role);
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
     const token:string =  localStorage.getItem("accessToken");
  // Force the user to log in if currently unauthenticated.

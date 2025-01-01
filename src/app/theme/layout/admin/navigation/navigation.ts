@@ -65,7 +65,7 @@ export class NavigationItem {
             id: 'tables',
             title: 'jobs',
             type: 'item',
-            url: '/jobs/list',
+            url: '/list-job-for-candidate',
             classes: 'nav-item',
             icon: 'feather icon-server'
           }

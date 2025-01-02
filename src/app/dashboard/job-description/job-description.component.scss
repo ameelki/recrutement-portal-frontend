@@ -22,4 +22,23 @@ form {
     font-size: 16px;
     border-radius: 5px;
   }
+  .custom-textarea {
+    width: 100%;        /* La largeur du textarea prend 100% de la largeur du conteneur parent */
+    height: 400px;      /* Ajuster la hauteur selon vos besoins (par exemple 150px) */
+    resize: vertical;   /* Permet à l'utilisateur de redimensionner uniquement verticalement */
+  }
+  .error-message {
+    color: red; /* Couleur du texte d'erreur */
+    font-size: 12px; /* Taille de police petite mais lisible */
+    margin-top: 0px; /* Espacement au-dessus du message pour l'espacement visuel */
+    display: block; /* Assurez-vous que le message d'erreur soit affiché sous forme de bloc */
+    width: 80%; /* S'assurer que le message prend toute la largeur disponible */
+    padding-left: 0; /* Aligner le message sans indentation */
+    text-align: left; /* Aligner le texte à gauche */
+    margin-left: 0px; /* Ajouter un léger décalage gauche pour l'alignement */
+    margin-bottom: 0px; /* Espacement au-dessus du message pour l'espacement visuel */
+
+  }.input-group .form-control.ng-invalid.ng-touched {
+    border-color: red; /* Bordure rouge si le champ est invalide et touché */
+}
   

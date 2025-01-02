@@ -49,7 +49,7 @@ export interface User {
 export class UserService {
 
   private apiUrl = 'http://141.145.217.37:8082/api/user'; // Replace with your backend URL
-  private api = 'http://141.145.217.37:8082/api/candidate'; // Replace with your backend URL
+  private api = 'http://localhost:8091/api/candidate'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
 

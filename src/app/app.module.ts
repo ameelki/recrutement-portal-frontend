@@ -23,7 +23,8 @@ import { NavItemComponent } from './theme/layout/admin/navigation/nav-content/na
 import { NavSearchComponent } from './theme/layout/admin/nav-bar/nav-left/nav-search/nav-search.component';
 import { NavigationItem } from './theme/layout/admin/navigation/navigation';
 import { ToggleFullScreenDirective } from './theme/shared/components/full-screen/toggle-full-screen';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,13 @@ import { HttpClientModule } from '@angular/common/http';
     
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, BrowserAnimationsModule,HttpClientModule],
-  providers: [NavigationItem],
+  providers: [NavigationItem,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor, // Utilisation de la classe d'interceptor
+      multi: true // Permet d'ajouter plusieurs interceptors
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

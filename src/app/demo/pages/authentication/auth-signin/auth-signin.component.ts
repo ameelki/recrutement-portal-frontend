@@ -1,7 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService, LoginFormRequest } from 'src/app/sevice/auth.service';
 import { JwtPayload } from 'src/app/sevice/user.service';
@@ -10,23 +11,34 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-auth-signin',
   standalone: true,
-  imports: [RouterModule,FormsModule,HttpClientModule],
+  imports: [RouterModule,FormsModule,HttpClientModule,CommonModule],
   templateUrl: './auth-signin.component.html',
   styleUrls: ['./auth-signin.component.scss']
 })
-export default class AuthSigninComponent {
+export default class AuthSigninComponent  implements OnInit {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  public tokenExpired: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router ,// Injectez ToastrService
+
+  constructor(private authService: AuthService, private router: Router ,private route: ActivatedRoute,// Injectez ToastrService
   ) { }
-
+  ngOnInit(): void {
+    // Vérifier si le paramètre 'expired' est présent dans les queryParams
+    this.route.queryParams.subscribe(params => {
+      if (params['expired']) {
+        this.tokenExpired = true;
+      }
+    })
+  }
   login() {
     const loginFormRequest: LoginFormRequest = {
       username: this.email,
       password: this.password
     };
+
+    
 
     // Affichage de l'animation de chargement pendant l'authentification
     Swal.fire({

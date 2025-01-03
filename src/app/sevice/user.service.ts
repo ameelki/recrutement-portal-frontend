@@ -19,15 +19,15 @@ export interface UserSummary {
 
 
   export interface JwtPayload {
-    sub?: string; 
-    email?: string; 
+    sub?: string;
+    email?: string;
     exp?: number;
     realm_access?: {
       roles?: string[];
     };
-  
+
   }
-  
+
   // Add other properties as needed
 
 
@@ -48,8 +48,8 @@ export interface User {
 })
 export class UserService {
 
-  private apiUrl = 'http://141.145.217.37:8082/api/user'; // Replace with your backend URL
-  private api = 'http://localhost:8091/api/candidate'; // Replace with your backend URL
+  private apiUrl = '/api/user'; // Replace with your backend URL
+  private api = '/api/candidate'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
 
@@ -66,7 +66,7 @@ export class UserService {
     return this.http.patch<void>(this.apiUrl, passwordResetRequest, { headers });
   }
 
-  private apiUrl1= 'http://localhost:8083/manage/usersList'; // Update with your API endpoint
+  private apiUrl1= '/manage/usersList'; // Update with your API endpoint
 
 
   getUserList(token: string): Observable<UserSummary[]> {
@@ -75,9 +75,9 @@ export class UserService {
   }
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.post<User>(`http://localhost:8083/api/user/by-email`, { email });
+    return this.http.post<User>(`/api/user/by-email`, { email });
   }
-  
+
 
   updateUserById(userId: number, tokenSubId: string, user: User): Observable<void> {
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);

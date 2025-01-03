@@ -23,13 +23,13 @@ export interface PasswordResetRequest {
     username: string;
     password: string;
   }
-  
+
   // Définir l'interface pour la réponse de l'authentification
   export interface AccessTokenAuthorization {
     accessToken: string;
     // Ajoutez d'autres propriétés selon votre réponse
   }
-  
+
   @Injectable({
     providedIn: 'root'
   })
@@ -43,10 +43,10 @@ export interface PasswordResetRequest {
     const isAuthenticated = !!localStorage.getItem('accessToken');
     this.authenticatedSubject.next(isAuthenticated);
   }
-    private apiUrl = `http://localhost:8091/user/login`; // Assurez-vous que l'URL est correcte
-  
-  
-  
+    private apiUrl = `/user/login`; // Assurez-vous que l'URL est correcte
+
+
+
     login(loginFormRequest: LoginFormRequest): Observable<AccessTokenAuthorization> {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -67,14 +67,14 @@ export interface PasswordResetRequest {
     getToken(): string | null {
       return localStorage.getItem('accessToken');
     }
-  
-  
-  
+
+
+
     // Vérifie si l'utilisateur est authentifié
     isAuthenticated(): boolean {
       return !!localStorage.getItem('accessToken');
     }
-  
+
     // Vérifie si l'utilisateur a un rôle spécifique
     hasRole(expectedRole: string): boolean {
       const token = localStorage.getItem('accessToken');

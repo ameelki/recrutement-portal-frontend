@@ -1,0 +1,20 @@
+{
+  "/api": {
+    "target": "http://141.145.217.37:8082",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/user": {
+    "target": "http://141.145.217.37:8082",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/manage": {
+    "target": "http://141.145.217.37:8082",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

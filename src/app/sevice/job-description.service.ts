@@ -2,7 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JobDescriptionRequest } from '../model/JobDescriptionRequest';
-import { environment } from 'src/environments/environment';  // Importer l'environnement
+import { environment } from 'src/environments/environment';
+import { AuthGuard } from '../../auth-guard';  // Importer l'environnement
 
 
 
@@ -15,18 +16,13 @@ export class JobDescriptionService {
   constructor(private http: HttpClient) { }
 
   createJobDescription(jobDescription: JobDescriptionRequest): Observable<JobDescriptionRequest> {
-    return this.http.post<JobDescriptionRequest>(`${environment.apiBaseUrl}api/job-descriptions`, jobDescription);
+    return this.http.post<JobDescriptionRequest>(`/api/job-descriptions`, jobDescription);
   }
- /* getJobDescriptions(page: number = 0, size: number = 5): Observable<JobDescriptionPage> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-
-    return this.http.get<JobDescriptionPage>(this.api, { params });
+  getJobDescriptions(page: number = 0, size: number = 5): Observable<any[]> {
+    return this.http.get<any[]>(`/api/job-descriptions`);
   }
 
-  
-*/
+
   // Méthode pour récupérer une description de poste spécifique par son ID
-  
+
   }

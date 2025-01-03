@@ -25,6 +25,7 @@ import { NavigationItem } from './theme/layout/admin/navigation/navigation';
 import { ToggleFullScreenDirective } from './theme/shared/components/full-screen/toggle-full-screen';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,9 +44,9 @@ import { AuthInterceptor } from './auth.interceptor';
     NavItemComponent,
     NavSearchComponent,
     ToggleFullScreenDirective,
-    
+
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, BrowserAnimationsModule,HttpClientModule],
+  imports: [BrowserModule,AppRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, BrowserAnimationsModule,HttpClientModule],
   providers: [NavigationItem,
     {
       provide: HTTP_INTERCEPTORS,

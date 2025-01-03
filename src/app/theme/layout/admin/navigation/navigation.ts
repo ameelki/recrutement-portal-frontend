@@ -61,7 +61,7 @@ export class NavigationItem {
             icon: 'feather icon-file-text'
           },
           {
-            hidden: !(roles.includes('candidate') || roles.includes('premium')),
+            hidden: !(roles.includes('client') || roles.includes('premium')),
             id: 'tables',
             title: 'jobs',
             type: 'item',

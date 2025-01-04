@@ -6,6 +6,7 @@ import { JobDescriptionComponent } from './dashboard/job-description/job-descrip
 import { AuthGuard } from '../auth-guard';
 import BasicElementsComponent from './demo/pages/form-elements/basic-elements/basic-elements.component';
 import { JobListComponent } from './dashboard/job-list/job-list.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,13 @@ const routes: Routes = [
         component: JobListComponent,
         canActivateChild: [AuthGuard],
 
-      }
-    ],
+      },
+   {
+     path: 'profile',
+     component: ProfileComponent,
+     canActivateChild: [AuthGuard],
+
+   }],
   },
   {
     path: '',

@@ -1,5 +1,5 @@
 export interface JobDescriptionRequest {
-    domaine: string; // Domaine sélectionné
+ domaine: string; // Domaine sélectionné
     subDomaine: string; // Sous-domaine sélectionné
     companyName: string; // Nom de l'entreprise
     positionTitle: string; // Titre du poste
@@ -17,4 +17,3 @@ export interface JobDescriptionRequest {
     contactPhone: string; // Téléphone de contact
     contactMobile: string; // Mobile de contact
   }
-  

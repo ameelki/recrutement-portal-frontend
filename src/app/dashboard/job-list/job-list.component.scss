@@ -29,4 +29,48 @@
   100% {
     transform: scale(1, 1);
   }
+
+}
+::ng-deep p-paginator{
+ .p-paginator {
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--p-paginator-color);
+  padding: 10px;
+  border-radius: 5px;
+  gap: var(--p-paginator-gap);
+}
+button.p-paginator-page {
+  padding: 5px;
+&-selected{
+    color: #000000 !important;
+}
+}
+
+  .p-paginator-page, .p-paginator-next, .p-paginator-last,.p-paginator-first, .p-paginator-prev {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  background: var(--p-paginator-nav-button-background);
+  border: 0 none;
+  color: var(--p-paginator-nav-button-color);
+  min-width: var(--p-paginator-nav-button-width);
+  height: var(--p-paginator-nav-button-height);
+  transition: background var(--p-paginator-transition-duration), color var(--p-paginator-transition-duration), outline-color var(--p-paginator-transition-duration), box-shadow var(--p-paginator-transition-duration);
+  border-radius: var(--p-paginator-nav-button-border-radius);
+  padding: 0;
+  margin: 0;
+}}
+
+.custom-height-card{
+  height: 769px;
+  overflow-y: auto;
 }

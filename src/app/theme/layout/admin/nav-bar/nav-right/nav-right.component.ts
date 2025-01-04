@@ -43,4 +43,7 @@ return this.decodeToken(token)
   }
   ngOnInit(): void {
   }
+  goTo(route:string){
+    this.router.navigate([`/${route}`]);
+  }
 }

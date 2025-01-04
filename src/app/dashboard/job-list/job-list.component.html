@@ -1,12 +1,19 @@
-<div class="d-flex justify-content-between w-full flex-wrap">
-  <p-card *ngFor="let job of jobList$ | async" [style]="{ width: '25rem', overflow: 'hidden' }">
+<div>
+  <div class="custom-height-card">
+<div  *ngIf="jobList$ | async as jobs" class="d-flex justify-content-between w-full flex-wrap " >
+  <p-card *ngFor="let job of jobs.content" [style]="{ width: '25rem', overflow: 'hidden' }">
     <ng-template #header>
       <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
     </ng-template>
-    <ng-template #title>   <b>{{job.positionTitle }}</b> </ng-template>
-    <ng-template #subtitle>  {{job.publicationDate | date:'dd/MM/yyyy hh:mm:ss' }} </ng-template>
+    <ng-template #title>   <b>{{job.positionTitle }} ({{job.companyName }} )</b> </ng-template>
+    <ng-template #subtitle> {{job.publicationDate | date:'dd/MM/yyyy hh:mm:ss' }} </ng-template>
     <p>
       {{job.jobDescription }}
     </p>
   </p-card>
+</div>
+
+<div *ngIf="loading" class="w-full text-center mb-3 mt-3">Loading...</div>
+  </div>
+  <p-paginator (onPageChange)="onPageChange($event)"  *ngIf="jobDescriptionResponse?.totalElements > rows" [first]="0" [rows]="rows" [totalRecords]="jobDescriptionResponse?.totalElements" [rowsPerPageOptions]="[9,12, 24, 48]" />
 </div>

@@ -79,6 +79,10 @@ export class UserService {
     return this.http.post<User>(`/api/user/by-email`, { email });
   }
 
+  getUserDetails(): Observable<User> {
+    return this.http.get<User>(`/api/userdetails`);
+  }
+
 
   updateUserById(userId: number, tokenSubId: string, user: User): Observable<void> {
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);

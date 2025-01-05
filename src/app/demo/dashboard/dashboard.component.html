@@ -90,7 +90,6 @@
 
       </div>
     </app-card>
-    <p-paginator (onPageChange)="onPageChange($event)"  *ngIf="userListResponse?.totalElements > 0" [first]="1" [rows]="rows" [totalRecords]="userListResponse?.totalElements" [rowsPerPageOptions]="[5,10,15, 20, 25]" />
-
-  </div>
+    <p-paginator (onPageChange)="onPageChange($event)"  *ngIf="userListResponse?.totalElements > 0" [first]="0" [rows]="rows" [totalRecords]="userListResponse?.totalElements" [rowsPerPageOptions]="[5,10,15, 20, 25]" />
+</div>
 </div>

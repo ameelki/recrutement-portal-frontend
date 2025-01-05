@@ -45,8 +45,6 @@ export interface PasswordResetRequest {
   }
     private apiUrl = `/user/login`; // Assurez-vous que l'URL est correcte
 
-
-
     login(loginFormRequest: LoginFormRequest): Observable<AccessTokenAuthorization> {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -54,43 +52,4 @@ export interface PasswordResetRequest {
       return this.http.post<AccessTokenAuthorization>(this.apiUrl, loginFormRequest, { headers });
     }
 
-    decodeToken(token: string): { roles: string[] } {
-      try {
-        const decoded = jwtDecode<JwtPayload>(token);
-        const roles = decoded.realm_access?.roles || [];
-        return { roles };
-      } catch (error) {
-        console.error('Token decoding failed', error);
-        return { roles: [] };
-      }
-    }
-    getToken(): string | null {
-      return localStorage.getItem('accessToken');
-    }
-
-
-
-    // Vérifie si l'utilisateur est authentifié
-    isAuthenticated(): boolean {
-      return !!localStorage.getItem('accessToken');
-    }
-
-    // Vérifie si l'utilisateur a un rôle spécifique
-    hasRole(expectedRole: string): boolean {
-      const token = localStorage.getItem('accessToken');
-      if (!token) {
-        return false;
-      }
-      const { roles } = this.decodeToken(token);
-      return roles.includes(expectedRole);
-    }
-    navigateBasedOnRole(roles: string[]): void {
-      if (roles.includes('superAdmin')) {
-        this.router.navigate(['users']);
-      } else if (roles.includes('user')) {
-        this.router.navigate(['/user']);
-      } else {
-        this.router.navigate(['/access-denied']);
-      }
-    }
 }

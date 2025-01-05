@@ -84,7 +84,7 @@ export class UserService {
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);
   }
 
-  getUsers(page: number = 1, size: number = 5): Observable<UserlistResponse> {
+  getUsers(page: number = 0, size: number = 5): Observable<UserlistResponse> {
     return this.http.get<UserlistResponse>(`/api/users?page=${page}&size=${size}`);
   }
 

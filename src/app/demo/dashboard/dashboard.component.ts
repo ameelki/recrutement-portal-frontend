@@ -33,7 +33,7 @@ import { UserlistResponse } from '../../models/userlist-response';
 })
 export default class DashboardComponent implements OnInit {
   usersList$: Observable<UserlistResponse>;
-   page: number=1;
+   page: number=0;
    rows: number=5;
    loading: boolean;
    userListResponse: any;

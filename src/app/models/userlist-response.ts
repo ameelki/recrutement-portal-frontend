@@ -1,9 +1,7 @@
 export interface UserlistResponse {
   content:User[];
   totalElements:number;
-
 }
-
 
 export interface User{
   firstName:string;

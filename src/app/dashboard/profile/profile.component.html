@@ -37,7 +37,7 @@
     </div>
       <div class="form-group text-left" *ngIf="!readonly">
         <button type="button" class="btn btn-warning" (click)="modifyProfile(true)" >Cancel</button>
-        <button type="submit" class="btn btn-primary"  >Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid" >Submit</button>
 
       </div>
     </div>

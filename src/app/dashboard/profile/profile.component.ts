@@ -26,17 +26,31 @@ export class ProfileComponent implements OnInit {
       lastName: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      id:['', [Validators.required]],
+      username: ['', [Validators.required]],
     });
   }
   ngOnInit(): void {
-    this.userDetails$ = this.userService.getUserDetails().pipe(map((response) => this.handleResponse(response)));;
+    this.userDetails$ = this.userService.getUserDetails().pipe(map((response) => this.handleResponse(response,false)));
   }
 
   get f() {
     return this.formGroup.controls;
   }
-  handleResponse(response: User): User {
+  handleResponse(response: User,update:boolean): User {
     //To Do Response handling implementation
+    if(update){
+    const refreshToken=  localStorage.getItem('refreshToken')
+this.userService.refreshToken(refreshToken).subscribe({
+  next:(response)=>{
+    localStorage.setItem('refreshToken',response?.refreshToken);
+    localStorage.setItem('accessToken',response?.accessToken);
+    },
+  error:(err)=>{
+console.error(err);
+  }
+})
+    }
     this.userInformation = response;
     this.formGroup.patchValue(response);
     this.loading=false;
@@ -45,7 +59,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(user: User) {
     this.readonly=true
-
+this.userDetails$= this.userService.updateUserDetails(user).pipe(map((response) => this.handleResponse(response,true)));
   }
   modifyProfile(readonly:boolean){
     this.readonly=readonly

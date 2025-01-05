@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PasswordResetRequest } from './auth.service';
+import { AccessTokenAuthorization, PasswordResetRequest } from './auth.service';
 import { UserlistResponse } from '../models/userlist-response';
 export interface Address {
   country: string;
@@ -83,8 +83,27 @@ export class UserService {
     return this.http.get<User>(`/api/userdetails`);
   }
 
+  updateUserDetails(user:User): Observable<User> {
+    const payload={
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone,
+      email: user.email,
+      userStatus:1
+    }
+    return this.http.put<User>(`/api/userdetails/${user.id}`,payload);
+  }
+
+
+  refreshToken(refreshToken:string): Observable<AccessTokenAuthorization> {
+const payload={
+  refreshToken:refreshToken
+}
+    return this.http.post<AccessTokenAuthorization>(`/user`,payload);
+  }
 
   updateUserById(userId: number, tokenSubId: string, user: User): Observable<void> {
+
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);
   }
 

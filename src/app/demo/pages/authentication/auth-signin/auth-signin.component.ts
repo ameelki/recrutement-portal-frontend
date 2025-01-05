@@ -38,7 +38,7 @@ export default class AuthSigninComponent  implements OnInit {
       password: this.password
     };
 
-    
+
 
     // Affichage de l'animation de chargement pendant l'authentification
     Swal.fire({
@@ -57,6 +57,7 @@ export default class AuthSigninComponent  implements OnInit {
       next: (response) => {
         // Stocker le token d'accès dans le localStorage
         localStorage.setItem('accessToken', response.accessToken);
+        localStorage.setItem('refreshToken', response.refreshToken);
 
         // Décoder le JWT pour obtenir les rôles de l'utilisateur
         const { roles } = this.decodeToken(response.accessToken);

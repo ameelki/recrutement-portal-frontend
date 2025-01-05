@@ -6,12 +6,7 @@ import { Router } from '@angular/router';
 import { JwtPayload } from './user.service';
 
 
-// Interface pour les données de réponse
-export interface AccessTokenAuthorization {
-  // Définir les propriétés nécessaires
-  token: string;
-  // Ajouter d'autres propriétés si nécessaire
-}
+
 export interface PasswordResetRequest {
   email: string;
   newPassword: string;
@@ -27,6 +22,7 @@ export interface PasswordResetRequest {
   // Définir l'interface pour la réponse de l'authentification
   export interface AccessTokenAuthorization {
     accessToken: string;
+    refreshToken: string;
     // Ajoutez d'autres propriétés selon votre réponse
   }
 

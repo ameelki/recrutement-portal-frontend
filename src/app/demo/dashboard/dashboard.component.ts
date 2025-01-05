@@ -22,6 +22,7 @@ import { UserService, UserSummary } from '../../sevice/user.service';
 import { map, Observable } from 'rxjs';
 import { Paginator } from 'primeng/paginator';
 import { JobDescriptionResponse } from '../../models/job-description';
+import { UserlistResponse } from '../../models/userlist-response';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +32,7 @@ import { JobDescriptionResponse } from '../../models/job-description';
   styleUrls: ['./dashboard.component.scss']
 })
 export default class DashboardComponent implements OnInit {
-  usersList$: Observable<any>;
+  usersList$: Observable<UserlistResponse>;
    page: number=1;
    rows: number=5;
    loading: boolean;

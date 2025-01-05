@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PasswordResetRequest } from './auth.service';
+import { UserlistResponse } from '../models/userlist-response';
 export interface Address {
   country: string;
   city: string;
@@ -83,8 +84,8 @@ export class UserService {
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);
   }
 
-  getUsers(page: number = 1, size: number = 5): Observable<any> {
-    return this.http.get<any>(`/api/users?page=${page}&size=${size}`);
+  getUsers(page: number = 1, size: number = 5): Observable<UserlistResponse> {
+    return this.http.get<UserlistResponse>(`/api/users?page=${page}&size=${size}`);
   }
 
 }

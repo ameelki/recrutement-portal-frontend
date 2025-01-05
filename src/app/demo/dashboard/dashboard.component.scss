@@ -1,7 +1,6 @@
 ::ng-deep p-paginator{
   .p-paginator {
-    display: flex
-  ;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -10,6 +9,7 @@
     border-radius: 5px;
     gap: var(--p-paginator-gap);
   }
+
   button.p-paginator-page {
     padding: 5px;
     &-selected{

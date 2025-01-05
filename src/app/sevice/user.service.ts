@@ -84,13 +84,7 @@ export class UserService {
   }
 
   updateUserDetails(user:User): Observable<User> {
-    const payload={
-      firstName: user.firstName,
-      lastName: user.lastName,
-      phone: user.phone,
-      email: user.email,
-    }
-    return this.http.put<User>(`/api/userdetails/${user.id}`,payload);
+ return this.http.put<User>(`/api/userdetails/${user.id}`,user);
   }
 
 

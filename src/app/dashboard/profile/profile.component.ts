@@ -40,7 +40,9 @@ export class ProfileComponent implements OnInit {
   handleResponse(response: User,update:boolean): User {
     //To Do Response handling implementation
     if(update){
-    const refreshToken=  localStorage.getItem('refreshToken')
+      this.readonly=true
+
+      const refreshToken=  localStorage.getItem('refreshToken')
 this.userService.refreshToken(refreshToken).subscribe({
   next:(response)=>{
     localStorage.setItem('refreshToken',response?.refreshToken);

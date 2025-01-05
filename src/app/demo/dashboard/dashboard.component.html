@@ -1,16 +1,16 @@
 <div class="row">
- 
+
   <div class="col-xl-8 col-md-6">
     <app-card cardTitle="
     الأولى التونسية للتوظيف العالمي والوساطة تصنف من الشركات التونسية">
       <p style="font-size: 18px; text-align: right; direction: rtl;">
-        
+
         الأولى التونسية للتوظيف العالمي والوساطة تصنف من الشركات التونسية الرائدة المقدمة لحلول التوظيف والموارد البشرية.
         خلال فترة وجيزة حققت شركة الأولى إنتشارا ونجاحا وسمعة طيبة خاصة بالدول العربية ذلك لأنها تحترم وتلبي إحتياجات عملائها من اليد العاملة المؤهلة المطلوبة وكذلك توفير الفرص الوظيفية المتميزة لراغبي السفر والعمل بالخارج.
         تسعى شركة الأولى ومن خلال إدارة حازمة ذات فكر متفتح و متقدم وكذلك نخبة من الموظفين ذوي القدرات المتميزة في العمل الدؤوب و التعامل الراقي والصريح مع عملائها إلى دوام المحافظة على بقاء الشركة في مقدمة الشركات العاملة في هذا المجال.
-        
+
         منهج التوظيف و دورة العمل
-        
+
         - الفرز : تحرص شركة الأولى على جمع وتنظيم المعلومات الخاصة بكل مرشح مع التأكد من صحتها ومطابقتها للوظيفة ومهامها لكي يتم الإختيار بين أنسب المرشحين لتحقيق التوافق المطلوب لمصلحة طالب الوظيفة وصاحب العمل.
         - التعريف المبدئي : تسعى شركة الأولى على إبراز صورة عميلنا المناسبة وتوضيح عرضه وطبيعة عمله من خلال جلسات وعروض تقديمية عنه لتعطي المرشح الفكرة المناسبة عن العمل والمؤسسة تمهيداً للخطوات التالية من عملية الإختيار وتساعده على إتخاذ القرار.
         - الإختيار: الحرص على إجراء آليات الإختيار المتفق عليه مع العميل من مقابلات شخصية وإختبارات بواسطة متخصصين في جميع المجالات لضمان الجودة وإمداد العميل بصورة أكثر شمولاً عن المتقدمين للوظيفة وإختيار صاحب أفضل وأنسب المواصفات التي تحقق له أهدافه المرجوة وتناسب طبيعة عمله.
@@ -21,7 +21,7 @@
     </app-card>
   </div>
   <div class="col-xl-4 col-md-6">
-    
+
     <div class="card">
       @for (list of card; track list) {
         <div class="card-block {{ list.design }}">
@@ -55,29 +55,28 @@
             </div>
           </div>
         </div>
-       
+
       </div>
     </div>
   }
- 
-  <div class="col-xl-8 col-md-6">
+
+  <div class="col-xl-8 col-md-6"  *ngIf="usersList$ | async as userListResponse">
     <app-card cardTitle="Recent Users" cardClass="Recent-Users" blockClass="p-0">
       <div class="table-responsive">
         <table class="table table-hover mb-0">
           <tbody>
-            @for (table of tables; track table) {
+            @for (user of userListResponse.content; track user) {
               <tr class="unread">
                 <td>
-                  <img class="rounded-circle" style="width: 40px" src="{{ table.src }}" alt="activity-user" />
+                  <img class="rounded-circle" style="width: 40px" src="assets/images/user/avatar-2.jpg" alt="activity-user" />
                 </td>
                 <td>
-                  <h6 class="mb-1">{{ table.title }}</h6>
-                  <p class="m-0">{{ table.text }}</p>
+                  <h6 class="mb-1">{{ user.firstName }} {{ user.lastName }}</h6>
+                  <p class="m-0">{{ user.phone }}</p>
                 </td>
                 <td>
                   <h6 class="text-muted">
-                    <i class="fas fa-circle {{ table.color }} f-10 m-r-15"></i>
-                    {{ table.time }}
+                    {{ user.email }}
                   </h6>
                 </td>
                 <td>
@@ -88,6 +87,8 @@
             }
           </tbody>
         </table>
+        <p-paginator (onPageChange)="onPageChange($event)"  *ngIf="userListResponse?.totalElements > 0" [first]="0" [rows]="rows" [totalRecords]="userListResponse?.totalElements" [rowsPerPageOptions]="[5,9,12, 24, 48]" />
+
       </div>
     </app-card>
   </div>

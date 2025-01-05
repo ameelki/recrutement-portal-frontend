@@ -82,4 +82,9 @@ export class UserService {
   updateUserById(userId: number, tokenSubId: string, user: User): Observable<void> {
     return this.http.put<void>(`http://localhost:8083/api/user/${userId}/${tokenSubId}`, user);
   }
+
+  getUsers(page: number = 1, size: number = 5): Observable<any> {
+    return this.http.get<any>(`/api/users?page=${page}&size=${size}`);
+  }
+
 }

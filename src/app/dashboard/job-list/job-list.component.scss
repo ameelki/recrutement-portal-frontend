@@ -39,8 +39,8 @@
   justify-content: center;
   flex-wrap: wrap;
   color: var(--p-paginator-color);
-  padding: 10px;
-  border-radius: 5px;
+   padding: 0px 10px;
+   border-radius: 5px;
   gap: var(--p-paginator-gap);
 }
 button.p-paginator-page {
@@ -66,7 +66,7 @@ button.p-paginator-page {
   height: var(--p-paginator-nav-button-height);
   transition: background var(--p-paginator-transition-duration), color var(--p-paginator-transition-duration), outline-color var(--p-paginator-transition-duration), box-shadow var(--p-paginator-transition-duration);
   border-radius: var(--p-paginator-nav-button-border-radius);
-  padding: 0;
+  padding: 5px;
   margin: 0;
 }}
 

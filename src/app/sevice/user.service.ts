@@ -89,7 +89,6 @@ export class UserService {
       lastName: user.lastName,
       phone: user.phone,
       email: user.email,
-      userStatus:1
     }
     return this.http.put<User>(`/api/userdetails/${user.id}`,payload);
   }
@@ -99,7 +98,7 @@ export class UserService {
 const payload={
   refreshToken:refreshToken
 }
-    return this.http.post<AccessTokenAuthorization>(`/user`,payload);
+    return this.http.post<AccessTokenAuthorization>(`/user/refresh`,payload);
   }
 
   updateUserById(userId: number, tokenSubId: string, user: User): Observable<void> {

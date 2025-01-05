@@ -71,7 +71,7 @@ export default class DashboardComponent implements OnInit {
     this.page = event.page;
     this.rows = event.rows;
     this.loading=true;
-    this.usersList$ = this.userService.getUsers(event.page+1, event.rows).pipe(map((response) => this.handleResponse(response)));
+    this.usersList$ = this.userService.getUsers(event.page, event.rows).pipe(map((response) => this.handleResponse(response)));
   }
 
   handleResponse(response: any): any {

@@ -38,7 +38,7 @@ export default class DashboardComponent implements OnInit {
    userListResponse: any;
   constructor(private userService: UserService) {}
   ngOnInit() {
-    this.usersList$ = this.userService.getUsers().pipe(map((response) => this.handleResponse(response)));;
+    this.usersList$ = this.userService.getUsers().pipe(map((response) => this.handleResponse(response)));
   }
 
   card = [

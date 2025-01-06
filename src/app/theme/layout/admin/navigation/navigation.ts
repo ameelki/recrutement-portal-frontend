@@ -56,7 +56,7 @@ export class NavigationItem {
             id: 'forms-element',
             title: 'create job position',
             type: 'item',
-            url: '/dashboard/job/create',
+            url: '/job/create',
             classes: 'nav-item',
             icon: 'feather icon-file-text'
           },
@@ -70,6 +70,32 @@ export class NavigationItem {
             icon: 'feather icon-server'
           }
         ]
+      },
+      {
+        id:'clients',
+        title: 'clients',
+        type: 'group',
+        icon: 'icon-group',
+children: [
+  {
+    hidden: !(roles.includes('client') || roles.includes('premium')),
+    id: 'create-client',
+    title: 'create client',
+    type: 'item',
+    url: '/client/create',
+    classes: 'nav-item',
+    icon: 'feather icon-file-text'
+  },
+  {
+    hidden: !(roles.includes('client') || roles.includes('premium')),
+    id: 'clientList',
+    title: 'client list',
+    type: 'item',
+    url: '/list-clients',
+    classes: 'nav-item',
+    icon: 'feather icon-server'
+  }
+]
       }
     ];
 

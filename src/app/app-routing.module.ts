@@ -7,6 +7,8 @@ import { AuthGuard } from '../auth-guard';
 import BasicElementsComponent from './demo/pages/form-elements/basic-elements/basic-elements.component';
 import { JobListComponent } from './dashboard/job-list/job-list.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { ClientListComponent } from './dashboard/client-list/client-list.component';
+import { ClientComponent } from './dashboard/client/client.component';
 
 const routes: Routes = [
   {
@@ -28,7 +30,7 @@ const routes: Routes = [
 
       },
 
-      { path: 'dashboard/job/create', component: JobDescriptionComponent,
+      { path: 'job/create', component: JobDescriptionComponent,
         canActivateChild: [AuthGuard],
       } ,
       {
@@ -42,7 +44,21 @@ const routes: Routes = [
      component: ProfileComponent,
      canActivateChild: [AuthGuard],
 
-   }],
+   },
+
+   {
+     path: 'client/create',
+     component: ClientComponent,
+     canActivateChild: [AuthGuard],
+
+   },
+   {
+     path: 'list-clients',
+     component: ClientListComponent,
+     canActivateChild: [AuthGuard],
+
+   },
+ ],
   },
   {
     path: '',

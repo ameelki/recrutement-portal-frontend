@@ -2,9 +2,8 @@
   <app-card cardTitle="Profile Information" [options]="false" *ngIf="userDetails$ | async as user"
   >
     <div class="form-group text-left" *ngIf="readonly">
-      <button type="button" class="btn btn-outline-secondary" (click)="modifyProfile(false)" >
-        <i  class="feather icon-edit"></i>
-        Modify Profile Details</button>
+      <button type="button" class="btn btn-outline-secondary"  title="Modify User Information"  (click)="modifyProfile(false)" >
+        <i  class="feather icon-edit me-0" ></i></button>
     </div>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form" >
 

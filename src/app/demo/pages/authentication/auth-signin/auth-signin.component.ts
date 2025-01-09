@@ -80,7 +80,7 @@ export default class AuthSigninComponent  implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: err.error.message || 'Authentication failed. Please check your credentials.',
+          text: err?.error?.message || 'Authentication failed. Please check your credentials.',
           footer: '<a href="">Why do I have this issue?</a>',
           confirmButtonText: 'Try Again'
         });

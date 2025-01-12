@@ -101,9 +101,9 @@ this.onDomainSubmit();
     });
     if (this.jobForm.valid) {
       const jobDescriptionRequest: JobDescriptionRequest = {
-        domaine: this.domainForm.value.sector,
-        subDomains: this.domainForm.value.subdomain,
         companyName: this.jobForm.value.companyName,
+        doamine: this.domainForm.value.sector,
+        subDomains: this.domainForm.value.subdomain,
         positionTitle: this.jobForm.value.positionTitle,
         numRequiredForPosition: this.jobForm.value.numRequiredForPosition,
         jobDescription: this.jobForm.value.jobDescription,

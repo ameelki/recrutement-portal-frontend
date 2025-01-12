@@ -1,5 +1,6 @@
 export interface JobDescriptionRequest {
- domaine: string; // Domaine sélectionné
+  doamine?: string; // Domaine sélectionné
+ domaine?: string; // Domaine sélectionné
     subDomaine?: string;
   subDomains?:string; // Sous-domaine sélectionné
     companyName: string; // Nom de l'entreprise

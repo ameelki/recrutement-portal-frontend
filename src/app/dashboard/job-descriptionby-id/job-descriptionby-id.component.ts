@@ -102,7 +102,7 @@ this.onDomainSubmit();
     if (this.jobForm.valid) {
       const jobDescriptionRequest: JobDescriptionRequest = {
         domaine: this.domainForm.value.sector,
-        subDomaine: this.domainForm.value.subdomain,
+        subDomains: this.domainForm.value.subdomain,
         companyName: this.jobForm.value.companyName,
         positionTitle: this.jobForm.value.positionTitle,
         numRequiredForPosition: this.jobForm.value.numRequiredForPosition,

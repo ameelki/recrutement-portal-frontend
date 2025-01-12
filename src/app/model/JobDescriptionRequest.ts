@@ -1,6 +1,7 @@
 export interface JobDescriptionRequest {
  domaine: string; // Domaine sélectionné
-    subDomaine: string; // Sous-domaine sélectionné
+    subDomaine?: string;
+  subDomains?:string; // Sous-domaine sélectionné
     companyName: string; // Nom de l'entreprise
     positionTitle: string; // Titre du poste
     numRequiredForPosition: number; // Nombre de positions requises

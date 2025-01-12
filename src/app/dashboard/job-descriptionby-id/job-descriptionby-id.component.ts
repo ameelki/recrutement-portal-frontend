@@ -46,7 +46,6 @@ export class JobDescriptionbyIdComponent  implements OnInit  {
   }
   ngOnInit(): void {
     // Formulaire pour la sélection du domaine
-
     this.domainForm = this.fb.group({
       sector: ['', Validators.required],
       subdomain: ['', Validators.required],

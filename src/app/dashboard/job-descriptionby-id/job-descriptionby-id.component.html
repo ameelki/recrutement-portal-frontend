@@ -26,7 +26,7 @@
 
   <!-- Card for Job Description Form -->
   <div class="col-sm-12 col-md-8" *ngIf="domainSelected">
-    <app-card cardTitle="Create Job Description" [options]="false">
+    <app-card cardTitle="Update Job Description" [options]="false">
       <h5>Job Information</h5>
       <hr />
       <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">

@@ -121,7 +121,16 @@ this.onDomainSubmit();
       };
       console.log(jobDescriptionRequest);
       try {
-        this.jobInformations$ = this.jobdescription.updateJobDescription(jobDescriptionRequest,this.id)
+        this.jobInformations$ = this.jobdescription.updateJobDescription(jobDescriptionRequest,this.id).pipe(map((response: any) => {
+          this.selectedDomain=response.doamine;
+          this.domainForm.patchValue({
+            sector: response.doamine,
+            subdomain:response.subDomains,
+          });
+          this.onDomainSubmit();
+          this.jobForm.patchValue(response);
+          return response;
+        }));
 
         Swal.close();
 

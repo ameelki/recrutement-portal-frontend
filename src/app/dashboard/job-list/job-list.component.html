@@ -1,7 +1,7 @@
 <div>
   <div class="custom-height-card">
 <div  *ngIf="jobList$ | async as jobs" class="d-flex justify-content-start w-full flex-wrap " >
-  <p-card *ngFor="let job of jobs.content" [style]="{ width: '25rem', overflow: 'hidden','margin-right':'2rem' }" (click)="goTo(job)">
+  <p-card *ngFor="let job of jobs.content" [style]="{ width: '25rem', overflow: 'hidden','margin-right':'2.5rem' }" (click)="goTo(job)">
     <ng-template #header>
       <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
     </ng-template>

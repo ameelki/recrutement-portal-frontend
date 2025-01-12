@@ -9,6 +9,7 @@ import { JobListComponent } from './dashboard/job-list/job-list.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { ClientListComponent } from './dashboard/client-list/client-list.component';
 import { ClientComponent } from './dashboard/client/client.component';
+import { JobDescriptionbyIdComponent } from './dashboard/job-descriptionby-id/job-descriptionby-id.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,14 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
 
       },
+
    {
+     path: 'job-description/:id',
+     component: JobDescriptionbyIdComponent,
+     canActivateChild: [AuthGuard],
+
+   },
+ {
      path: 'profile',
      component: ProfileComponent,
      canActivateChild: [AuthGuard],

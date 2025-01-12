@@ -19,10 +19,19 @@ export class JobDescriptionService {
   createJobDescription(jobDescription: JobDescriptionRequest): Observable<JobDescriptionRequest> {
     return this.http.post<JobDescriptionRequest>(`/api/job-descriptions`, jobDescription);
   }
+
+
+  updateJobDescription(jobDescription: JobDescriptionRequest,id:number): Observable<JobDescriptionRequest> {
+    return this.http.put<JobDescriptionRequest>(`/api/job-descriptions/${id}`, jobDescription);
+  }
+
   getJobDescriptions(page: number = 0, size: number = 9): Observable<JobDescriptionResponse> {
     return this.http.get<JobDescriptionResponse>(`/api/job-descriptions/user?page=${page}&size=${size}`);
   }
 
+  getJobDescriptionsById(id: number): Observable<any> {
+    return this.http.get<any>(`/api/job-descriptions/${id}`);
+  }
 
   // Méthode pour récupérer une description de poste spécifique par son ID
 

@@ -1,0 +1,197 @@
+<div class="row" *ngIf="jobInformations$ | async as jobInfo">
+  <!-- Card for Domain Selection -->
+  <div class="col-sm-12 col-md-4">
+    <app-card cardTitle="Choose a Domain" [options]="false">
+      <form [formGroup]="domainForm" (ngSubmit)="onDomainSubmit()">
+        <div class="form-group">
+          <label for="sector">Select a Domain</label>
+
+          <input [attr.disabled]="true"  [attr.readonly]="true" type="text" class="form-control" id="sector" formControlName="sector"  />
+
+        </div>
+
+        <!-- Show the subdomain dropdown if a domain is selected -->
+        <div *ngIf="selectedDomain">
+          <label for="subdomain">Select a Subdomain</label>
+          <input  [attr.disabled]="true"  [attr.readonly]="true" type="text" class="form-control" id="subdomain" formControlName="subdomain"  />
+
+        </div>
+
+        <div *ngIf="!domainSelected" class="form-group text-center">
+          <button type="submit" class="btn btn-primary"  [disabled]="domainForm.invalid">Next</button>
+        </div>
+      </form>
+    </app-card>
+  </div>
+
+  <!-- Card for Job Description Form -->
+  <div class="col-sm-12 col-md-8" *ngIf="domainSelected">
+    <app-card cardTitle="Create Job Description" [options]="false">
+      <h5>Job Information</h5>
+      <hr />
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Company Name -->
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input  type="text" class="form-control" id="companyName" formControlName="companyName" placeholder="Enter company name" />
+            </div>
+            <span *ngIf="jobForm.get('companyName')?.invalid && jobForm.get('companyName')?.touched" class="error-message">company Name name is required.</span>
+
+            <!-- Position Title -->
+            <div class="form-group">
+              <label for="positionTitle">Position Title</label>
+              <input  type="text" class="form-control" id="positionTitle" formControlName="positionTitle" placeholder="Enter position title" />
+            </div>
+            <span *ngIf="jobForm.get('positionTitle')?.invalid && jobForm.get('positionTitle')?.touched" class="error-message">positionT itle name is required.</span>
+
+
+            <!-- Number of Positions -->
+            <div class="form-group">
+              <label for="numRequiredForPosition">Number of Positions</label>
+              <input type="number" class="form-control" id="numRequiredForPosition" formControlName="numRequiredForPosition" placeholder="Enter number of positions" />
+            </div>
+            <span *ngIf="jobForm.get('numRequiredForPosition')?.hasError('required') && jobForm.get('numRequiredForPosition')?.touched" class="error-message">
+                Number required for position is required.
+              </span>
+            <span *ngIf="jobForm.get('numRequiredForPosition')?.hasError('min') && jobForm.get('numRequiredForPosition')?.touched" class="error-message">
+                Number required for position must be at least 1.
+              </span>
+
+
+            <!-- Job Description -->
+            <div class="form-group">
+              <label for="jobDescription">Job Description</label>
+              <textarea class="orm-control custom-textarea" id="jobDescription" formControlName="jobDescription" rows="4" placeholder="Enter job description"></textarea>
+            </div>
+
+            <span *ngIf="jobForm.get('jobDescription')?.hasError('required') && jobForm.get('jobDescription')?.touched" class="error-message">
+                Job description is required.
+              </span>
+
+            <!-- Message d'erreur si le texte dépasse 1000 caractères -->
+            <span *ngIf="jobForm.get('jobDescription')?.hasError('maxlength') && jobForm.get('jobDescription')?.touched" class="error-message">
+                Job description cannot exceed 10000 characters.
+              </span>
+
+            <!-- Basic Salary -->
+            <div class="form-group">
+              <label for="basicSalary">Basic Salary</label>
+              <input type="number" class="form-control" id="basicSalary" formControlName="basicSalary" placeholder="Enter basic salary" />
+            </div>
+            <span *ngIf="jobForm.get('basicSalary')?.hasError('required') && jobForm.get('basicSalary')?.touched" class="error-message">
+                Basic salary is required.
+              </span>
+          </div>
+
+
+          <div class="col-md-6">
+            <!-- Food Allowance -->
+            <div class="form-group">
+              <label for="foodAllowance">Food Allowance</label>
+              <input type="number" class="form-control" id="foodAllowance" formControlName="foodAllowance" placeholder="Enter food allowance" />
+            </div>
+            <span *ngIf="jobForm.get('foodAllowance')?.hasError('required') && jobForm.get('foodAllowance')?.touched" class="error-message">
+                Food allowance is required.
+              </span>
+
+
+            <!-- Other Allowance -->
+            <div class="form-group">
+              <label for="otherAllowance">Other Allowance</label>
+              <input type="number" class="form-control" id="otherAllowance" formControlName="otherAllowance" placeholder="Enter other allowance" />
+            </div>
+            <span *ngIf="jobForm.get('otherAllowance')?.hasError('required') && jobForm.get('otherAllowance')?.touched" class="error-message">
+                Other allowance is required.
+              </span>
+
+            <!-- Leave Policy -->
+            <div class="form-group">
+              <label for="leavePolicy">Leave Policy</label>
+              <input type="text" class="form-control" id="leavePolicy" formControlName="leavePolicy" placeholder="Enter leave policy" />
+            </div>
+            <span *ngIf="jobForm.get('leavePolicy')?.hasError('required') && jobForm.get('leavePolicy')?.touched" class="error-message">
+                Leave policy is required.
+              </span>
+
+            <!-- Air Ticket Allowance -->
+            <div class="form-group">
+              <label for="airTicketAllowance">Air Ticket Allowance</label>
+              <input type="text" class="form-control" id="airTicketAllowance" formControlName="airTicketAllowance" placeholder="Enter air ticket allowance" />
+            </div>
+            <span *ngIf="jobForm.get('airTicketAllowance')?.hasError('required') && jobForm.get('airTicketAllowance')?.touched" class="error-message">
+                Air ticket allowance is required.
+              </span>
+
+            <!-- Accommodation -->
+            <div class="form-group">
+              <label for="accommodation">Accommodation</label>
+              <input type="text" class="form-control" id="accommodation" formControlName="accommodation" placeholder="Enter accommodation" />
+            </div>
+            <span *ngIf="jobForm.get('accommodation')?.hasError('required') && jobForm.get('accommodation')?.touched" class="error-message">
+                Accommodation is required.
+              </span>
+
+            <!-- Working Hours -->
+            <div class="form-group">
+              <label for="workingHours">Working Hours</label>
+              <input type="text" class="form-control" id="workingHours" formControlName="workingHours" placeholder="Enter working hours" />
+            </div>
+            <span *ngIf="jobForm.get('workingHours')?.hasError('required') && jobForm.get('workingHours')?.touched" class="error-message">
+                Working hours are required.
+              </span>
+
+            <!-- Medical Benefits -->
+            <div class="form-group">
+              <label for="medicalBenefits">Medical Benefits</label>
+              <input type="text" class="form-control" id="medicalBenefits" formControlName="medicalBenefits" placeholder="Enter medical benefits" />
+            </div>
+            <span *ngIf="jobForm.get('medicalBenefits')?.hasError('required') && jobForm.get('medicalBenefits')?.touched" class="error-message">
+                Medical benefits are required.
+              </span>
+
+            <!-- Contact Email -->
+            <div class="form-group">
+              <label for="contactEmail">Contact Email</label>
+              <input type="email" class="form-control" id="contactEmail" formControlName="contactEmail" placeholder="Enter contact email" />
+            </div>
+            <span *ngIf="jobForm.get('contactEmail')?.hasError('required') && jobForm.get('contactEmail')?.touched" class="error-message">
+                Email is required.
+              </span>
+
+            <span *ngIf="jobForm.get('contactEmail')?.hasError('email') && jobForm.get('contactEmail')?.touched" class="error-message">
+                Please enter a valid email address.
+              </span>
+            <!-- Contact Phone -->
+            <div class="form-group">
+              <label for="contactPhone">Contact Phone</label>
+              <input type="text" class="form-control" id="contactPhone" formControlName="contactPhone" placeholder="Enter contact phone" />
+            </div>
+            <span *ngIf="jobForm.get('contactPhone')?.hasError('maxlength') && jobForm.get('contactPhone')?.touched" class="error-message">
+                Phone number cannot exceed 20 characters.
+              </span>
+
+            <!-- Contact Mobile -->
+            <div class="form-group">
+              <label for="contactMobile">Contact Mobile</label>
+              <input type="text" class="form-control" id="contactMobile" formControlName="contactMobile" placeholder="Enter contact mobile" />
+
+            </div>
+            <span *ngIf="jobForm.get('contactMobile')?.hasError('maxlength') && jobForm.get('contactMobile')?.touched" class="error-message">
+                Mobile number cannot exceed 20 characters.
+              </span>
+
+            <!-- Publication Date -->
+
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="jobForm.invalid">Submit</button>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

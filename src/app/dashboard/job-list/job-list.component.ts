@@ -32,7 +32,7 @@ export class JobListComponent implements OnInit {
   rows: number = 9;
   jobDescriptionResponse: JobDescriptionResponse;
   loading: boolean;
-  constructor(private service: JobDescriptionService) {}
+  constructor(private service: JobDescriptionService,private router: Router) { }
   ngOnInit(): void {
     this.loading=true;
     this.jobList$ = this.service.getJobDescriptions().pipe(map((response) => this.handleResponse(response)));
@@ -50,5 +50,9 @@ export class JobListComponent implements OnInit {
     this.jobDescriptionResponse = response;
     this.loading=false;
     return response;
+  }
+  goTo(job:any):void{
+    this.router.navigateByUrl(`/job-description/${job.id}`);
+
   }
 }

@@ -5,16 +5,16 @@ form {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
+
   .form-group {
     margin-bottom: 15px;
   }
-  
+
   input.form-control, textarea.form-control, select.form-control {
     border-radius: 5px;
     box-shadow: none;
   }
-  
+
   button[type="submit"] {
     align-self: center; /* This will center the button horizontally */
     width: auto; /* Adjusts button width if needed */
@@ -24,7 +24,7 @@ form {
   }
   .custom-textarea {
     width: 100%;        /* La largeur du textarea prend 100% de la largeur du conteneur parent */
-    height: 400px;      /* Ajuster la hauteur selon vos besoins (par exemple 150px) */
+    height: 150px;      /* Ajuster la hauteur selon vos besoins (par exemple 150px) */
     resize: vertical;   /* Permet à l'utilisateur de redimensionner uniquement verticalement */
   }
   .error-message {
@@ -41,4 +41,3 @@ form {
   }.input-group .form-control.ng-invalid.ng-touched {
     border-color: red; /* Bordure rouge si le champ est invalide et touché */
 }
-  

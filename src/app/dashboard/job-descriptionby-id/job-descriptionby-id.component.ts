@@ -93,7 +93,7 @@ this.onDomainSubmit();
   }
    onSubmit(): void {
     Swal.fire({
-      title: 'Creating Job Description...',
+      title: 'Updating Job Description...',
       text: 'Please wait while we process your request.',
       icon: 'info',
       showConfirmButton: false,
@@ -127,7 +127,7 @@ this.onDomainSubmit();
 
         Swal.fire({
           title: 'Success!',
-          text: 'Job Description created successfully!',
+          text: 'Job Description updated successfully!',
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {

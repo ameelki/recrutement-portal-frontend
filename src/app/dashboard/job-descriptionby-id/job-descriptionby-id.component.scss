@@ -1,0 +1,44 @@
+/* Style général pour les champs du formulaire */
+form {
+  padding: 20px;
+  background-color: #f1f3f5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input.form-control, textarea.form-control, select.form-control {
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+button[type="submit"] {
+  align-self: center; /* This will center the button horizontally */
+  width: auto; /* Adjusts button width if needed */
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.custom-textarea {
+  width: 100%;        /* La largeur du textarea prend 100% de la largeur du conteneur parent */
+  height: 400px;      /* Ajuster la hauteur selon vos besoins (par exemple 150px) */
+  resize: vertical;   /* Permet à l'utilisateur de redimensionner uniquement verticalement */
+}
+.error-message {
+  color: red; /* Couleur du texte d'erreur */
+  font-size: 12px; /* Taille de police petite mais lisible */
+  margin-top: 0px; /* Espacement au-dessus du message pour l'espacement visuel */
+  display: block; /* Assurez-vous que le message d'erreur soit affiché sous forme de bloc */
+  width: 80%; /* S'assurer que le message prend toute la largeur disponible */
+  padding-left: 0; /* Aligner le message sans indentation */
+  text-align: left; /* Aligner le texte à gauche */
+  margin-left: 0px; /* Ajouter un léger décalage gauche pour l'alignement */
+  margin-bottom: 0px; /* Espacement au-dessus du message pour l'espacement visuel */
+
+}.input-group .form-control.ng-invalid.ng-touched {
+   border-color: red; /* Bordure rouge si le champ est invalide et touché */
+ }
+

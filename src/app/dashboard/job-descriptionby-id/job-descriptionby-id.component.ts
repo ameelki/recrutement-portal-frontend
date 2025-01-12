@@ -12,11 +12,11 @@ import { map, Observable } from 'rxjs';
 @Component({
   selector: 'app-job-descriptionby-id',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,SharedModule, NgbDropdownModule,CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, SharedModule, NgbDropdownModule, CommonModule],
   templateUrl: './job-descriptionby-id.component.html',
   styleUrl: './job-descriptionby-id.component.scss'
 })
-export class JobDescriptionbyIdComponent  implements OnInit  {
+export class JobDescriptionbyIdComponent implements OnInit {
   domainForm: FormGroup;
   jobForm: FormGroup;
   domainSelected: boolean = false;
@@ -24,35 +24,67 @@ export class JobDescriptionbyIdComponent  implements OnInit  {
 
   // Domain and Subdomain data
   domains: string[] = ['Hospitality', 'Sales', 'Restaurants and Cafes', 'Hypermarket', 'Sports', 'Engineering Sector', 'Health Sector'];
+
   onDomainChange(event: any): void {
     // When the domain is selected, update the selectedDomain
     this.selectedDomain = event.target.value;
-
   }
+
   subdomains: any = {
-    'Hospitality': ['Food Server / Waiter', 'Party Chef', 'Hostesses', 'Sous Chef', 'Bartender', 'Executive Chef', 'Demi Chef', 'Bar Manager'],
-    'Sales': ['Branch Manager', 'Assistant Branch Manager', 'Sales Representative', 'Area Manager', 'Regional Manager'],
-    'Restaurants and Cafes': ['Restaurant Manager', 'Assistant Restaurant Manager', 'Restaurant Equipment Maintenance Technician', 'Cafe Manager', 'Cafe Supervisor'],
-    'Hypermarket': ['Fresh Food Manager', 'Bakery Supervisor', 'Bakery Section Manager'],
-    'Sports': ['Sports Hall Coaches and Trainers', 'Sports Hall Managers'],
+    Hospitality: [
+      'Food Server / Waiter',
+      'Party Chef',
+      'Hostesses',
+      'Sous Chef',
+      'Bartender',
+      'Executive Chef',
+      'Demi Chef',
+      'Bar Manager'
+    ],
+    Sales: ['Branch Manager', 'Assistant Branch Manager', 'Sales Representative', 'Area Manager', 'Regional Manager'],
+    'Restaurants and Cafes': [
+      'Restaurant Manager',
+      'Assistant Restaurant Manager',
+      'Restaurant Equipment Maintenance Technician',
+      'Cafe Manager',
+      'Cafe Supervisor'
+    ],
+    Hypermarket: ['Fresh Food Manager', 'Bakery Supervisor', 'Bakery Section Manager'],
+    Sports: ['Sports Hall Coaches and Trainers', 'Sports Hall Managers'],
     'Engineering Sector': ['Project Manager', 'Technical Engineer', 'Quantity Surveyor', 'Civil Site Engineer', 'Quality Engineer'],
-    'Health Sector': ['Doctor', 'Nurse', 'Health and Safety Engineer', 'Pharmacist', 'Lab Technician', 'Health Administrator', 'General Practitioner', 'Specialist Doctor', 'Physiotherapist', 'Hospital Manager', 'Nutritionist', 'Occupational Health & Safety Specialist', 'Radiologist', 'Medical Equipment Technician'],
+    'Health Sector': [
+      'Doctor',
+      'Nurse',
+      'Health and Safety Engineer',
+      'Pharmacist',
+      'Lab Technician',
+      'Health Administrator',
+      'General Practitioner',
+      'Specialist Doctor',
+      'Physiotherapist',
+      'Hospital Manager',
+      'Nutritionist',
+      'Occupational Health & Safety Specialist',
+      'Radiologist',
+      'Medical Equipment Technician'
+    ]
   };
   jobInformations$: Observable<any>;
   private id: number;
 
-  constructor(private fb: FormBuilder,private jobdescription: JobDescriptionService,    private _Activatedroute: ActivatedRoute,
+  constructor(
+    private fb: FormBuilder,
+    private jobdescription: JobDescriptionService,
+    private _Activatedroute: ActivatedRoute
   ) {
-     this.id = parseInt(
-      this._Activatedroute.snapshot.paramMap.get('id') || '0'
-    );
-
+    this.id = parseInt(this._Activatedroute.snapshot.paramMap.get('id') || '0');
   }
+
   ngOnInit(): void {
     // Formulaire pour la sélection du domaine
     this.domainForm = this.fb.group({
       sector: ['', Validators.required],
-      subdomain: ['', Validators.required],
+      subdomain: ['', Validators.required]
     });
 
     // Formulaire pour la description du poste
@@ -71,26 +103,29 @@ export class JobDescriptionbyIdComponent  implements OnInit  {
       medicalBenefits: ['', Validators.required],
       contactEmail: ['', [Validators.required, Validators.email]],
       contactPhone: ['', Validators.maxLength(20)],
-      contactMobile: ['', Validators.maxLength(20)],
+      contactMobile: ['', Validators.maxLength(20)]
     });
- this.jobInformations$ =   this.jobdescription.getJobDescriptionsById(this.id).pipe(map((response: any) => {
-this.selectedDomain=response.doamine;
-   this.domainForm.patchValue({
-     sector: response.doamine,
-     subdomain:response.subDomains,
-    });
-this.onDomainSubmit();
-   this.jobForm.patchValue(response);
-   return response;
- }));
-}
+    this.jobInformations$ = this.jobdescription.getJobDescriptionsById(this.id).pipe(
+      map((response: any) => {
+        this.selectedDomain = response.doamine;
+        this.domainForm.patchValue({
+          sector: response.doamine,
+          subdomain: response.subDomains
+        });
+        this.onDomainSubmit();
+        this.jobForm.patchValue(response);
+        return response;
+      })
+    );
+  }
 
   onDomainSubmit(): void {
     if (this.domainForm.valid) {
-      this.domainSelected = true;  // Montre la carte du formulaire de description
+      this.domainSelected = true; // Montre la carte du formulaire de description
     }
   }
-   onSubmit(): void {
+
+  onSubmit(): void {
     Swal.fire({
       title: 'Updating Job Description...',
       text: 'Please wait while we process your request.',
@@ -116,32 +151,33 @@ this.onDomainSubmit();
         medicalBenefits: this.jobForm.value.medicalBenefits,
         contactEmail: this.jobForm.value.contactEmail,
         contactPhone: this.jobForm.value.contactPhone,
-        contactMobile: this.jobForm.value.contactMobile,
+        contactMobile: this.jobForm.value.contactMobile
       };
       try {
-        this.jobInformations$ = this.jobdescription.updateJobDescription(jobDescriptionRequest,this.id).pipe(map((response: any) => {
-          this.selectedDomain=response.doamine;
-          this.domainForm.patchValue({
-            sector: response.doamine,
-            subdomain:response.subDomains,
-          });
-          this.onDomainSubmit();
-          this.jobForm.patchValue(response);
-          return response;
-        }));
+        this.jobInformations$ = this.jobdescription.updateJobDescription(jobDescriptionRequest, this.id).pipe(
+          map((response: any) => {
+            this.selectedDomain = response.doamine;
+            this.domainForm.patchValue({
+              sector: response.doamine,
+              subdomain: response.subDomains
+            });
+            this.onDomainSubmit();
+            this.jobForm.patchValue(response);
+            return response;
+          })
+        );
         Swal.close();
         Swal.fire({
           title: 'Success!',
           text: 'Job Description updated successfully!',
           icon: 'success',
           confirmButtonText: 'OK'
-        }).then(() => {
-        });
+        }).then(() => {});
       } catch (error) {
         Swal.close();
         Swal.fire({
           title: 'Error!',
-          text:  'Something went wrong!',
+          text: 'Something went wrong!',
           icon: 'error',
           confirmButtonText: 'OK'
         });
@@ -157,7 +193,7 @@ this.onDomainSubmit();
             icon: 'error',
             confirmButtonText: 'OK'
           });
-          break;  // Arrêter l'exécution dès qu'une erreur est trouvée
+          break; // Arrêter l'exécution dès qu'une erreur est trouvée
         }
       }
     }

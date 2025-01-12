@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../sevice/auth.service';
 import { JobDescriptionService } from '../../sevice/job-description.service';
 import { map, Observable, of } from 'rxjs';
 import { AsyncPipe, CommonModule, JsonPipe, NgForOf } from '@angular/common';
@@ -10,14 +9,6 @@ import { Button } from 'primeng/button';
 import { Paginator } from 'primeng/paginator';
 import { JobDescriptionResponse } from '../../models/job-description';
 import { ProgressSpinner } from 'primeng/progressspinner';
-
-interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
-}
-
 
 @Component({
   selector: 'app-job-list',

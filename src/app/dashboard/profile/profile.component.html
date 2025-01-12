@@ -2,44 +2,49 @@
   <app-card cardTitle="Profile Information" [options]="false" *ngIf="userDetails$ | async as user"
   >
     <div class="form-group text-left" *ngIf="readonly">
-      <button type="button" class="btn btn-outline-secondary"  title="Modify User Information"  (click)="modifyProfile(false)" >
-        <i  class="feather icon-edit me-0" ></i></button>
+      <button type="button" class="btn btn-outline-secondary" title="Modify User Information"
+              (click)="modifyProfile(false)">
+        <i class="feather icon-edit me-0"></i></button>
     </div>
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form" >
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
 
-    <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" formControlName="firstName"  [readOnly]="readonly" placeholder="Enter company name" />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" [readOnly]="readonly"
+                   placeholder="Enter company name" />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" [readOnly]="readonly"
+                   placeholder="Enter company name" />
+          </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email" [readOnly]="readonly"
+                   placeholder="Enter company name" />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone" [readOnly]="readonly"
+                   placeholder="Enter company name" />
+          </div>
+
+        </div>
+        <div class="form-group text-left" *ngIf="!readonly">
+          <button type="button" class="btn btn-warning" (click)="modifyProfile(true)">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">Submit</button>
+
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName"  formControlName="lastName" [readOnly]="readonly" placeholder="Enter company name" />
-      </div>
-
-    </div>
-
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" formControlName="email"  [readOnly]="readonly"  placeholder="Enter company name" />
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control"  id="phone"  formControlName="phone" [readOnly]="readonly" placeholder="Enter company name" />
-      </div>
-
-    </div>
-      <div class="form-group text-left" *ngIf="!readonly">
-        <button type="button" class="btn btn-warning" (click)="modifyProfile(true)" >Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid" >Submit</button>
-
-      </div>
-    </div>
     </form>
-</app-card>
+  </app-card>
 </div>

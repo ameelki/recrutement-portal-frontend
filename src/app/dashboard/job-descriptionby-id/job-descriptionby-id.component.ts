@@ -82,9 +82,7 @@ this.onDomainSubmit();
    this.jobForm.patchValue(response);
    return response;
  }));
-
-
-  }
+}
 
   onDomainSubmit(): void {
     if (this.domainForm.valid) {
@@ -131,18 +129,13 @@ this.onDomainSubmit();
           this.jobForm.patchValue(response);
           return response;
         }));
-
         Swal.close();
-
         Swal.fire({
           title: 'Success!',
           text: 'Job Description updated successfully!',
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
-          this.domainSelected=false;
-          this.domainForm.reset();
-          this.jobForm.reset();  // Vider le formulaire
         });
       } catch (error) {
         Swal.close();

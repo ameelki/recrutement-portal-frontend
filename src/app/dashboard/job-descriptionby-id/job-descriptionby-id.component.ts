@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardComponent } from '../../theme/shared/components/card/card.component';
-import { CommonModule, NgForOf, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JobDescriptionService } from '../../sevice/job-description.service';
 import Swal from 'sweetalert2';
@@ -9,7 +8,6 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModule } from '../../theme/shared/shared.module';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable } from 'rxjs';
-import { JobDescriptionResponse } from '../../models/job-description';
 
 @Component({
   selector: 'app-job-descriptionby-id',
@@ -117,7 +115,6 @@ this.onDomainSubmit();
         contactPhone: this.jobForm.value.contactPhone,
         contactMobile: this.jobForm.value.contactMobile,
       };
-      console.log(jobDescriptionRequest);
       try {
         this.jobInformations$ = this.jobdescription.updateJobDescription(jobDescriptionRequest,this.id).pipe(map((response: any) => {
           this.selectedDomain=response.doamine;
@@ -162,5 +159,4 @@ this.onDomainSubmit();
       }
     }
   }
-
 }

@@ -24,7 +24,11 @@ export class JobDescriptionbyIdComponent  implements OnInit  {
 
   // Domain and Subdomain data
   domains: string[] = ['Hospitality', 'Sales', 'Restaurants and Cafes', 'Hypermarket', 'Sports', 'Engineering Sector', 'Health Sector'];
+  onDomainChange(event: any): void {
+    // When the domain is selected, update the selectedDomain
+    this.selectedDomain = event.target.value;
 
+  }
   subdomains: any = {
     'Hospitality': ['Food Server / Waiter', 'Party Chef', 'Hostesses', 'Sous Chef', 'Bartender', 'Executive Chef', 'Demi Chef', 'Bar Manager'],
     'Sales': ['Branch Manager', 'Assistant Branch Manager', 'Sales Representative', 'Area Manager', 'Regional Manager'],

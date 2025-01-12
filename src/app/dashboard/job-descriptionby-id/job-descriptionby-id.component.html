@@ -5,16 +5,19 @@
       <form [formGroup]="domainForm" (ngSubmit)="onDomainSubmit()">
         <div class="form-group">
           <label for="sector">Select a Domain</label>
-
-          <input [attr.disabled]="true"  [attr.readonly]="true" type="text" class="form-control" id="sector" formControlName="sector"  />
-
+          <select class="form-control" id="sector" formControlName="sector" (change)="onDomainChange($event)">
+            <option value="">Select a Domain</option>
+            <option *ngFor="let domain of domains" [value]="domain" [selected]="domainForm.get('sector').value === domain">{{ domain }}</option>
+          </select>
         </div>
 
         <!-- Show the subdomain dropdown if a domain is selected -->
         <div *ngIf="selectedDomain">
           <label for="subdomain">Select a Subdomain</label>
-          <input  [attr.disabled]="true"  [attr.readonly]="true" type="text" class="form-control" id="subdomain" formControlName="subdomain"  />
-
+          <select class="form-control" id="subdomain" formControlName="subdomain">
+            <option value="">Select a Subdomain</option>
+            <option *ngFor="let subdomain of subdomains[selectedDomain]"   [selected]="domainForm.get('subdomain').value === subdomain" [value]="subdomain">{{ subdomain }}</option>
+          </select>
         </div>
 
         <div *ngIf="!domainSelected" class="form-group text-center">

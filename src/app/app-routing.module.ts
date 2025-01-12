@@ -38,7 +38,6 @@ const routes: Routes = [
         path: 'list-job-for-candidate',
         component: JobListComponent,
         canActivateChild: [AuthGuard],
-
       },
 
    {
